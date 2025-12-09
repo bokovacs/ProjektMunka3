@@ -1,15 +1,23 @@
-Feature: Bejelentkezés érvényes adatokkal
-  Mint regisztrált ügyfél, azt szeretném, hogy a felhasználónevemmel és jelszavammal be tudjak lépni
-  a Digital Bank tesztfelületre.
+Feature: US01 – Bejelentkezés érvényes adatokkal
+  A regisztrált ügyfél sikeresen be tud lépni a rendszerbe érvényes hitelesítő adatokkal.
 
-  Background:
-    Given a böngésző megnyitotta a Digital Bank tesztfelület bejelentkezési oldalt
+  Rule: R1 – A login oldalon rendelkezésre állnak a hitelesítéshez szükséges mezők és vezérlők.
+  - Felhasználónév mező
+  - Jelszó mező
+  - "Emlékezzen rám" jelölőnégyzet
+  - BELÉPÉS gomb
+    Rule: R2 – Érvényes felhasználónév + jelszó páros esetén a rendszer a főoldalra irányít.
+    Rule: R3 – A főoldalon megjelenik a személyre szabott üdvözlő üzenet.
+    Rule: R4 – A bal oldali menü elemei a bejelentkezést követően elérhetővé válnak.
 
-  @valid-login
-  Scenario: Sikeres bejelentkezés demó felhasználóval
-    When beírom a felhasználónevet "jsmith2"
-    And beírom a jelszót "Demo123!"
-    And rákattintok a "BELÉPÉS" gombra
-    Then a Kezdőlap / Áttekintés oldal jelenik meg
-    And megjelenik az üzenet "Üdvözöljük, J"
-    And a bal oldali menü elemei aktívak
+    Scenario Outline: Sikeres bejelentkezés érvényes hitelesítő adatokkal
+      Given the login page is displayed
+      And the username field, password field, remember-me checkbox and login button are visible
+      When I sign in using "<username>" and "<password>"
+      Then I am redirected to the home page
+      And the welcome message is displayed
+      And the menu items are available
+
+      Examples:
+        | username | password |
+        | jsmith2  | Demo123! |
