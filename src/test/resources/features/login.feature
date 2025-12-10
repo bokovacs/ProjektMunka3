@@ -1,18 +1,15 @@
 Feature: US01 – Bejelentkezés érvényes adatokkal
-  A regisztrált ügyfél sikeresen be tud lépni a rendszerbe érvényes hitelesítő adatokkal.
+  A regisztrált ügyfél sikeresen be tud lépni.
 
-  Rule: R1 – A login oldalon rendelkezésre állnak a hitelesítéshez szükséges mezők és vezérlők.
-  - Felhasználónév mező
-  - Jelszó mező
-  - "Emlékezzen rám" jelölőnégyzet
-  - BELÉPÉS gomb
-    Rule: R2 – Érvényes felhasználónév + jelszó páros esetén a rendszer a főoldalra irányít.
-    Rule: R3 – A főoldalon megjelenik a személyre szabott üdvözlő üzenet.
-    Rule: R4 – A bal oldali menü elemei a bejelentkezést követően elérhetővé válnak.
+  Background:
+    Given the login page is displayed
 
-    Scenario Outline: Sikeres bejelentkezés érvényes hitelesítő adatokkal
-      Given the login page is displayed
-      And the username field, password field, remember-me checkbox and login button are visible
+  Rule: R1 – A login oldalon rendelkezésre állnak.
+    Rule: R2 – Érvényes felhasználónév + jelszó.
+  Rule: R3 – A főoldalon megjelenik.
+    Rule: R4 – A bal oldali menü.
+
+    Scenario Outline: Sikeres bejelentkezés.
       When I sign in using "<username>" and "<password>"
       Then I am redirected to the home page
       And the welcome message is displayed
