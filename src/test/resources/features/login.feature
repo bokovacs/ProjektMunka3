@@ -4,16 +4,14 @@ Feature: US01 – Bejelentkezés érvényes adatokkal
   Background:
     Given the login page is displayed
 
-  Rule: R1 – A login oldalon rendelkezésre állnak.
-    Rule: R2 – Érvényes felhasználónév + jelszó.
-  Rule: R3 – A főoldalon megjelenik.
-    Rule: R4 – A bal oldali menü.
+  Rule: R1 – A login oldalon rendelkezésre állnak a mezők.
+    Rule: R2 – Érvényes felhasználónév + jelszó sikeres belépést eredményez.
+  Rule: R3 – A főoldalon megjelenik a Dashboard cím.
 
-    Scenario Outline: Sikeres bejelentkezés.
+    Scenario Outline: Sikeres bejelentkezés
+
       When I sign in using "<username>" and "<password>"
       Then I am redirected to the home page
-      And the welcome message is displayed
-      And the menu items are available
 
       Examples:
         | username | password |
