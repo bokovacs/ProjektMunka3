@@ -12,6 +12,7 @@ Feature: US01 – Bejelentkezés érvényes adatokkal
 
       When I sign in using "<username>" and "<password>"
       Then I am redirected to the home page
+      And the browser is closed
 
       Examples:
         | username | password |

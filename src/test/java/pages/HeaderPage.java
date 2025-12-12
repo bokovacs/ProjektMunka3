@@ -7,15 +7,15 @@ import org.openqa.selenium.support.FindBy;
 public class HeaderPage extends BasePage {
 
     // Avatar ikon (jobb felső sarok)
-    @FindBy(css = "img.user-avatar")
+    @FindBy(css = "img.user-avatar.rounded-circle")
     private WebElement avatarIcon;
 
-    // Profil menü dropdown (logout ebben jelenik meg)
+    // Profil menü dropdown
     @FindBy(css = "div.user-menu.dropdown-menu")
     private WebElement userMenuDropdown;
 
     // Logout link
-    @FindBy(css = "a[href='/bank/logout']")
+    @FindBy(css = "a.nav-link[href='/bank/logout']")
     private WebElement logoutLink;
 
     public HeaderPage(WebDriver driver) {
@@ -24,6 +24,7 @@ public class HeaderPage extends BasePage {
 
     public boolean isAvatarVisible() {
         waitForVisible(avatarIcon);
+        waitForClickable(avatarIcon);
         return avatarIcon.isDisplayed();
     }
 
@@ -38,3 +39,4 @@ public class HeaderPage extends BasePage {
         logoutLink.click();
     }
 }
+
